@@ -1,8 +1,8 @@
 const screens = document.querySelectorAll('.screen');
-
 const navPublic = document.getElementById('nav-public');
 const navPrivate = document.getElementById('nav-private');
 const greeting = document.getElementById('user-greeting');
+const logoutModal = document.getElementById('logout-confirm');
 
 /* =====================
    UTILIDADES
@@ -21,12 +21,19 @@ function isLogged() {
 }
 
 /* =====================
-   NAVEGACIÓN
+   NAVEGACIÓN SPA
 ===================== */
 
 function showScreen(id) {
     screens.forEach(s => s.classList.remove('active'));
     document.getElementById(id).classList.add('active');
+
+    // Ocultar botones del header según pantalla
+    if (id === 'login' || id === 'register') {
+        navPublic.classList.add('hidden');
+    } else if (!isLogged()) {
+        navPublic.classList.remove('hidden');
+    }
 }
 
 function goHome() {
@@ -49,8 +56,27 @@ function goPrivate() {
     showScreen('private');
 }
 
+/* =====================
+   LOGOUT MODAL
+===================== */
+
 function confirmLogout() {
-    showScreen('logout-confirm');
+    logoutModal.classList.add('active');
+}
+
+function closeLogout() {
+    logoutModal.classList.remove('active');
+}
+
+function logout() {
+    localStorage.removeItem('logged');
+    localStorage.removeItem('currentUser');
+
+    logoutModal.classList.remove('active');
+    navPrivate.classList.add('hidden');
+    navPublic.classList.remove('hidden');
+
+    goHome();
 }
 
 /* =====================
@@ -143,20 +169,14 @@ function loadPrivate() {
     showScreen('private');
 }
 
-function logout() {
-    localStorage.removeItem('logged');
-    localStorage.removeItem('currentUser');
-    navPrivate.classList.add('hidden');
-    navPublic.classList.remove('hidden');
-    goHome();
-}
-
 /* =====================
    AUTOLOGIN
 ===================== */
 
 if (isLogged()) {
     loadPrivate();
+} else {
+    goHome();
 }
 
 
