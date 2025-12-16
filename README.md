@@ -1,185 +1,190 @@
-Etapa 1 – Diseño de la SPA
- Objetivo
+# Spa-Login-Oliva — Octavio Web App
 
-Diseñar la estructura visual y funcional de una aplicación web SPA antes de su implementación, definiendo pantallas, flujo de usuario y criterios de diseño.
+## 1. Descripción general
 
- Diseño general
+**Spa-Login-Oliva** es una **Single Page Application (SPA)** desarrollada como proyecto académico para la materia **Intensificación – Diciembre 2025**.
+La aplicación permite el **registro de usuarios**, el **inicio de sesión**, la **gestión de una sesión activa** y el **cierre de sesión**, utilizando exclusivamente tecnologías del lado del cliente.
 
-La documentación de diseño fue unificada y adaptada a la versión final del proyecto.
-El estilo sigue un enfoque simple, legible y coherente, con elementos centrados y correctamente espaciados para mejorar la experiencia del usuario.
+El proyecto se desarrolló en etapas, comenzando por el diseño conceptual y continuando con la implementación funcional, respetando criterios de claridad visual, coherencia de interfaz y correcta organización del código.
 
- Paleta de colores
-Elemento	Color	Uso
-Fondo principal	#F9F5EF (crema claro)	Fondo general
-Texto y bordes	#000000 (negro suave)	Inputs, títulos, labels
-Errores	Rojo alerta	Validaciones
-Botones	Negro	Acciones principales
- Tipografía
+---
 
-Familia: Sans Serif moderna (Inter o similar)
+## 2. Etapa 1 – Diseño de la aplicación
 
-Títulos: Bold
+### 2.1 Objetivo de la etapa
 
-Labels / subtítulos: Semibold
+Definir la estructura visual y funcional de la aplicación antes de su implementación, estableciendo:
 
-Texto regular: Regular
+* Pantallas necesarias
+* Flujo de navegación
+* Estilo visual
+* Componentes reutilizables
 
-La tipografía contribuye a un diseño limpio, geométrico y fácil de leer.
+---
 
- Componentes de la interfaz
-Inputs
+### 2.2 Diseño general
 
-Fondo blanco
+El diseño de la aplicación sigue un enfoque **minimalista, legible y coherente**, priorizando:
 
-Borde negro fino
+* Jerarquía visual clara
+* Elementos centrados
+* Separación adecuada entre componentes
+* Consistencia entre pantallas
 
-Tipografía sans serif
+La documentación de diseño fue unificada y ajustada a la versión final del proyecto, incorporando las correcciones realizadas durante la devolución docente.
 
-Espaciado uniforme
+---
 
-Mensajes de error en rojo
+### 2.3 Paleta de colores
 
-Consistentes en todas las pantallas
+| Elemento         | Color                   | Uso principal                  |
+| ---------------- | ----------------------- | ------------------------------ |
+| Fondo principal  | `#F9F5EF` (crema claro) | Fondo general de la aplicación |
+| Texto y bordes   | `#000000` (negro suave) | Títulos, inputs y etiquetas    |
+| Estados de error | Rojo de alerta          | Mensajes de validación         |
+| Botones          | Negro                   | Acciones principales           |
 
-Títulos
+---
 
-Contenidos dentro de cajas rectangulares con borde fino
+### 2.4 Tipografía
 
-Centrados
+**Familia tipográfica:** Sans Serif moderna (Inter o similar)
 
-Visualmente destacados
+* Títulos: Bold
+* Subtítulos y labels: Semibold
+* Texto general: Regular
 
-Botones
+La tipografía refuerza un diseño limpio, geométrico y fácil de leer.
 
-Ubicados al final de los formularios
+---
 
-Estilo minimalista y rectangular
+### 2.5 Componentes de la interfaz
 
-Diseño consistente entre pantallas
+#### Inputs
 
-🖥️ Estructura de pantallas
-1. Pantalla de Bienvenida
+* Fondo blanco
+* Borde negro fino
+* Tipografía sans serif
+* Espaciado uniforme
+* Mensajes de error en color rojo
+* Estilo consistente en todas las pantallas
 
-Permite navegar a Login o Registro
+#### Títulos
 
-2. Registro
+* Contenidos dentro de cajas rectangulares con borde fino
+* Centrados
+* Visualmente destacados
 
-Campos:
+#### Botones
 
-Nombre
+* Ubicados al final de los formularios
+* Diseño rectangular y minimalista
+* Estilo consistente en toda la aplicación
 
-Email
+---
 
-Usuario
+### 2.6 Estructura de pantallas
 
-Contraseña
+1. **Pantalla de Bienvenida**
+   Permite acceder a las opciones de inicio de sesión o registro.
 
-Validaciones:
+2. **Pantalla de Registro**
+   Campos:
 
-Campos obligatorios
+   * Nombre
+   * Email
+   * Usuario
+   * Contraseña
 
-Email válido
+   Validaciones:
 
-Usuario único
+   * Campos obligatorios
+   * Email con formato válido
+   * Usuario único
+   * Contraseña con un mínimo de 6 caracteres
 
-Contraseña mínima de 6 caracteres
+   Si el registro es correcto, el usuario es redirigido al login.
 
-Si el registro es correcto → redirige a Login
+3. **Pantalla de Inicio de Sesión**
 
-3. Inicio de Sesión
+   * Permite iniciar sesión con usuario o email
+   * Verifica credenciales contra los datos almacenados
+   * Muestra mensajes de error cuando corresponde
 
-Permite iniciar sesión con usuario o email
+4. **Pantalla Privada**
 
-Verifica credenciales contra datos almacenados
+   * Requiere una sesión activa
+   * Muestra el mensaje: “Hola, [usuario]”
+   * Espacio reservado para funcionalidades futuras
 
-Muestra mensajes de error si corresponde
+5. **Pantalla de Logout**
 
-Acceso a sección interna
+   * Cierra la sesión activa
+   * Redirige a la pantalla de bienvenida
 
-4. Pantalla Privada
+---
 
-Requiere sesión activa
+### 2.7 Flujo funcional unificado
 
-Muestra: “Hola, [usuario]”
+1. Bienvenida
+2. Registro o inicio de sesión
+3. Validación de datos
+4. Acceso a la sección privada
+5. Cierre de sesión
+6. Regreso a bienvenida
 
-Espacio reservado para funcionalidades futuras (Etapa 3)
+---
 
-5. Logout
+## 3. Etapa 2 – Construcción de la SPA
 
-Limpia la sesión activa
+### 3.1 Objetivo de la etapa
 
-Muestra confirmación
+Implementar la aplicación diseñada en la Etapa 1 como una **SPA funcional**, sin recarga de página, incorporando validaciones, manejo de sesión y persistencia de datos.
 
-Redirige a Bienvenida
+---
 
- Flujo funcional unificado
+### 3.2 Funcionalidades implementadas
 
-Bienvenida
+* Registro de usuarios con validaciones completas
+* Inicio de sesión mediante usuario o email
+* Manejo de sesión activa
+* Persistencia de datos mediante LocalStorage
+* Protección de acceso a la zona privada
+* Redirección automática según estado de sesión
+* Logout con confirmación
+* Navegación interna sin recarga de página
+* Diseño responsive (desktop y mobile)
+* Mensajes de error y éxito integrados en la interfaz (sin uso de `alert`)
 
-Registro o Login
+---
 
-Validación de datos
+### 3.3 Manejo de sesión y persistencia
 
-Acceso a sección privada
+La aplicación utiliza **LocalStorage** para:
 
-Logout
+* Almacenar los usuarios registrados
+* Guardar la sesión activa
+* Mantener la sesión al recargar la página
 
-Regreso a Bienvenida
+Si no existe una sesión activa, el acceso a la sección privada es bloqueado y el usuario es redirigido automáticamente a la pantalla de bienvenida.
 
- Etapa 2 – Construcción de la SPA
-Objetivo
+---
 
-Implementar la SPA diseñada en la Etapa 1, desarrollando una aplicación funcional, responsive y sin recarga de página, incorporando validaciones, manejo de sesión y persistencia de datos.
+### 3.4 Arquitectura de la aplicación
 
- Funcionalidades implementadas
+* Aplicación SPA basada en HTML, CSS y JavaScript puro
+* Navegación interna mediante manipulación del DOM
+* Separación clara de responsabilidades:
 
-Registro de usuarios con validaciones completas
+  * HTML: estructura
+  * CSS: estilos
+  * JavaScript: lógica de la aplicación
 
-Inicio de sesión con usuario o email
+---
 
-Manejo de sesión activa
+## 4. Estructura del proyecto
 
-Persistencia de sesión mediante LocalStorage
-
-Protección de acceso a la zona privada
-
-Redirecciones automáticas según estado de sesión
-
-Logout con confirmación
-
-Mensajes de error y éxito integrados en la interfaz (sin alert)
-
-SPA real (sin recarga)
-
- Manejo de sesión y persistencia
-
-La aplicación utiliza LocalStorage para:
-
-Almacenar usuarios registrados
-
-Guardar la sesión activa
-
-Mantener la sesión al recargar la página
-
-Si no existe una sesión activa, el usuario es redirigido automáticamente a la pantalla de bienvenida.
-
- Arquitectura
-
-SPA basada en un único archivo HTML
-
-Navegación interna mediante JavaScript
-
-Manipulación del DOM para mostrar y ocultar vistas
-
-Separación clara de responsabilidades:
-
-HTML → estructura
-
-CSS → estilos
-
-JavaScript → lógica
-
-📁 Estructura de carpetas
+```
 /src
 /css
   styles.css
@@ -198,40 +203,48 @@ JavaScript → lógica
 
 index.html
 README.md
+```
 
- Tecnologías utilizadas
+---
 
-HTML5
+## 5. Tecnologías utilizadas
 
-CSS3
+* HTML5
+* CSS3
+* JavaScript
+* LocalStorage
+* Arquitectura SPA
 
-JavaScript
+---
 
-LocalStorage
+## 6. Ejecución del proyecto
 
-Arquitectura SPA
+1. Descargar o clonar el repositorio
+2. Abrir el archivo `index.html` en un navegador web moderno
+3. No se requiere servidor ni instalación adicional
 
- Cómo ejecutar el proyecto
+---
 
-Descargar o clonar el repositorio
+## 7. Documentación técnica
 
-Abrir el archivo index.html en un navegador web moderno
+La documentación técnica del proyecto se encuentra en la carpeta **/Documentación**, donde se detallan:
 
-No requiere servidor ni instalación adicional
+* Arquitectura general
+* Funciones principales
+* Manejo de sesión
+* Decisiones técnicas relevantes
 
- Documentación técnica
+---
 
-La documentación técnica del proyecto se encuentra en la carpeta /Documentación, incluyendo:
-
-Explicación de la arquitectura
-
-Funciones principales
-
-Manejo de sesión
-
-Justificación de decisiones técnicas
-
- Autor
+## 8. Autor
 
 Octavio Oliva
-Proyecto académico – Intensificación 2025
+Proyecto académico — Intensificación 2025
+
+---
+
+## 9. Estado del proyecto
+
+* Etapa 1 – Diseño: Finalizada
+* Etapa 2 – Construcción de la SPA: Finalizada
+* Etapa 3 – Espacio de trabajo avanzado: Pendiente
