@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Octavio Web App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+    <img src="logo.png" alt="Logo" class="logo">
+
+    <!-- Navegación pública -->
+    <nav id="nav-public">
+        <button class="nav-btn" onclick="goLogin()">Iniciar sesión</button>
+        <button class="nav-btn" onclick="goRegister()">Registrarse</button>
+    </nav>
+
+    <!-- Navegación privada -->
+    <nav id="nav-private" class="hidden">
+        <span id="user-greeting"></span>
+        <button class="nav-btn" onclick="confirmLogout()">Cerrar sesión</button>
+    </nav>
+</header>
+
+<main>
+
+    <!-- BIENVENIDA -->
+    <section id="welcome" class="screen active">
+        <div class="panel">
+            <h1 class="panel-title">Bienvenido</h1>
+            <p class="welcome-text">
+                Octavio Web App es una Single Page Application (SPA) que permite
+                registrarse, iniciar sesión y acceder a un espacio privado preparado
+                para futuras funcionalidades.
+            </p>
+        </div>
+    </section>
+
+    <!-- LOGIN -->
+    <section id="login" class="screen">
+        <div class="panel">
+            <h1 class="panel-title">Inicio de sesión</h1>
+
+            <form onsubmit="event.preventDefault(); login();">
+                <label>Usuario o Email</label>
+                <input type="text" id="login-identifier">
+
+                <label>Contraseña</label>
+                <input type="password" id="login-pass">
+
+                <button class="primary-btn">Iniciar sesión</button>
+                <p id="login-error" class="error"></p>
+            </form>
+        </div>
+    </section>
+
+    <!-- REGISTRO -->
+    <section id="register" class="screen">
+        <div class="panel">
+            <h1 class="panel-title">Registrarse</h1>
+
+            <form onsubmit="event.preventDefault(); register();">
+                <label>Usuario</label>
+                <input type="text" id="reg-user">
+
+                <label>Email</label>
+                <input type="email" id="reg-mail">
+
+                <label>Contraseña</label>
+                <input type="password" id="reg-pass">
+
+                <label>Confirmar contraseña</label>
+                <input type="password" id="reg-pass-confirm">
+
+                <button class="primary-btn">Crear cuenta</button>
+                <p id="register-msg" class="error"></p>
+            </form>
+        </div>
+    </section>
+
+    <!-- ZONA PRIVADA -->
+    <section id="private" class="screen">
+        <div class="panel">
+            <h1 class="panel-title">Zona privada</h1>
+            <div class="future-box">
+                Espacio reservado para funcionalidades de la Etapa 3.
+            </div>
+        </div>
+    </section>
+
+    <!-- CONFIRMAR LOGOUT -->
+    <section id="logout-confirm" class="screen">
+        <div class="panel">
+            <h1 class="panel-title">¿Cerrar sesión?</h1>
+            <div class="confirm-actions">
+                <button class="primary-btn" onclick="logout()">Sí</button>
+                <button class="nav-btn" onclick="goPrivate()">No</button>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

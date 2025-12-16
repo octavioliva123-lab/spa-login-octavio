@@ -1,0 +1,310 @@
+/* =====================
+   RESET Y BASE
+===================== */
+* {
+    box-sizing: border-box;
+    font-family: "Inter", Arial, sans-serif;
+}
+
+body {
+    margin: 0;
+    background: #f9f5ef;
+    color: #000;
+}
+
+/* =====================
+   HEADER
+===================== */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 40px;
+}
+
+.logo {
+    height: 48px;
+}
+
+nav {
+    display: flex;
+    gap: 12px;
+}
+
+/* =====================
+   BOTONES
+===================== */
+.nav-btn {
+    padding: 12px 22px;
+    border: 1.5px solid #000;
+    background: transparent;
+    color: #000;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    font-weight: 500;
+}
+
+.nav-btn:hover {
+    background: #0b2a4a;
+    color: #fff;
+}
+
+.primary-btn {
+    padding: 14px;
+    width: 100%;
+    background: #0b2a4a;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.primary-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+/* =====================
+   LAYOUT PRINCIPAL
+===================== */
+main {
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+/* =====================
+   SPA + ANIMACIONES
+===================== */
+.screen {
+    display: none;
+    width: 100%;
+    opacity: 0;
+    transform: translateY(14px);
+}
+
+.screen.active {
+    display: block;
+    animation: screenEnter 0.45s ease forwards;
+}
+
+@keyframes screenEnter {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =====================
+   PANEL
+===================== */
+.panel {
+    max-width: 520px;
+    margin: auto;
+    background: #1e1e1e;
+    color: white;
+    padding: 40px 35px;
+    border-radius: 8px;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+    animation: panelPop 0.35s ease;
+}
+
+@keyframes panelPop {
+    from {
+        transform: scale(0.96);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* =====================
+   TEXTOS
+===================== */
+.panel-title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+
+.welcome-text {
+    text-align: center;
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+/* =====================
+   FORMULARIOS
+===================== */
+label {
+    display: block;
+    margin-top: 16px;
+    font-weight: 500;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    margin-top: 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+}
+
+input:focus {
+    border-color: #0b2a4a;
+}
+
+/* =====================
+   MENSAJES DE ERROR (SHAKE)
+===================== */
+.error {
+    margin-top: 12px;
+    color: #ff6b6b;
+    font-size: 14px;
+    animation: shake 0.35s ease;
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-4px); }
+    50% { transform: translateX(4px); }
+    75% { transform: translateX(-3px); }
+    100% { transform: translateX(0); }
+}
+
+/* =====================
+   ZONA PRIVADA
+===================== */
+.future-box {
+    margin-top: 25px;
+    padding: 22px;
+    background: rgba(255,255,255,0.08);
+    text-align: center;
+    border-radius: 6px;
+}
+
+/* =====================
+   LOGOUT - MODAL
+===================== */
+#logout-confirm {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    backdrop-filter: blur(6px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+#logout-confirm.active {
+    display: flex;
+    animation: fadeBackdrop 0.3s ease forwards;
+}
+
+@keyframes fadeBackdrop {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.confirm-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    margin-top: 30px;
+}
+
+.confirm-actions button {
+    width: 160px;
+    height: 48px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+/* BOTÓN SÍ */
+.confirm-actions .primary-btn {
+    background: #c62828;
+    color: #fff;
+    border: none;
+}
+
+.confirm-actions .primary-btn:hover {
+    background: #b71c1c;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+/* BOTÓN NO (MISMA ANIMACIÓN) */
+.confirm-actions .nav-btn {
+    border: 1.5px solid #fff;
+    background: transparent;
+    color: #fff;
+}
+
+.confirm-actions .nav-btn:hover {
+    background: rgba(255,255,255,0.18);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+/* =====================
+   UTILIDADES
+===================== */
+.hidden {
+    display: none;
+}
+
+/* =====================
+   RESPONSIVE
+===================== */
+@media (max-width: 600px) {
+    header {
+        padding: 15px 20px;
+    }
+
+    .panel {
+        padding: 30px 25px;
+    }
+
+    .panel-title {
+        font-size: 24px;
+    }
+
+    .confirm-actions {
+        flex-direction: column;
+    }
+
+    .confirm-actions button {
+        width: 100%;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
