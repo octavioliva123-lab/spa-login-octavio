@@ -4,22 +4,25 @@
     <meta charset="UTF-8">
     <title>Octavio Web App</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- RUTA CSS CORRECTA -->
     <link rel="stylesheet" href="CSS/styles.css">
 </head>
 <body>
 
 <header>
-    <!-- RUTA IMAGEN CORRECTA -->
     <img src="Imagenes/logo.png" alt="Logo" class="logo">
 
-    <!-- Navegación pública -->
+    <!-- NAV PUBLICA -->
     <nav id="nav-public">
         <button class="nav-btn" onclick="goLogin()">Iniciar sesión</button>
         <button class="nav-btn" onclick="goRegister()">Registrarse</button>
     </nav>
 
-    <!-- Navegación privada -->
+    <!-- NAV VOLVER -->
+    <nav id="nav-back" class="hidden">
+        <button class="nav-btn" onclick="goHome()">Volver</button>
+    </nav>
+
+    <!-- NAV PRIVADA -->
     <nav id="nav-private" class="hidden">
         <span id="user-greeting"></span>
         <button class="nav-btn" onclick="confirmLogout()">Cerrar sesión</button>
@@ -33,9 +36,8 @@
         <div class="panel">
             <h1 class="panel-title">Bienvenido</h1>
             <p class="welcome-text">
-                Octavio Web App es una Single Page Application (SPA) que permite
-                registrarse, iniciar sesión y acceder a un espacio privado preparado
-                para futuras funcionalidades.
+                Octavio Web App es una SPA que permite registrarse, iniciar sesión
+                y acceder a un espacio privado.
             </p>
         </div>
     </section>
@@ -52,7 +54,7 @@
                 <label>Contraseña</label>
                 <input type="password" id="login-pass">
 
-                <button class="primary-btn">Iniciar sesión</button>
+                <button type="submit" class="primary-btn">Iniciar sesión</button>
                 <p id="login-error" class="error"></p>
             </form>
         </div>
@@ -76,7 +78,7 @@
                 <label>Confirmar contraseña</label>
                 <input type="password" id="reg-pass-confirm">
 
-                <button class="primary-btn">Crear cuenta</button>
+                <button type="submit" class="primary-btn">Crear cuenta</button>
                 <p id="register-msg" class="error"></p>
             </form>
         </div>
@@ -86,8 +88,21 @@
     <section id="private" class="screen">
         <div class="panel">
             <h1 class="panel-title">Zona privada</h1>
-            <div class="future-box">
-                Espacio reservado para funcionalidades de la Etapa 3.
+
+            <!-- ETAPA 3 – LISTA DE TAREAS -->
+            <div class="todo-box">
+
+                <h2 class="todo-title">Mis tareas</h2>
+
+                <div class="todo-input">
+                    <input type="text" id="task-input" placeholder="Escribí una tarea...">
+                    <button class="primary-btn" onclick="addTask()">Agregar</button>
+                </div>
+
+                <ul id="task-list" class="todo-list">
+                    <!-- Las tareas se agregan por JS -->
+                </ul>
+
             </div>
         </div>
     </section>
@@ -105,10 +120,13 @@
     </div>
 </section>
 
-<!-- RUTA JS CORRECTA -->
 <script src="JS/script.js"></script>
 </body>
 </html>
+
+
+
+
 
 
 

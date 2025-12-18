@@ -8,7 +8,6 @@ const logoutModal = document.getElementById('logout-confirm');
 /* =====================
    UTILIDADES
 ===================== */
-
 function getUsers() {
     return JSON.parse(localStorage.getItem('users')) || [];
 }
@@ -21,10 +20,13 @@ function isLogged() {
     return localStorage.getItem('logged') === 'true';
 }
 
-/* =====================
-   NAVEGACIÓN SPA
-===================== */
+function currentUser() {
+    return localStorage.getItem('currentUser');
+}
 
+/* =====================
+   NAVEGACIÓN
+===================== */
 function showScreen(id) {
     screens.forEach(s => s.classList.remove('active'));
     document.getElementById(id).classList.add('active');
@@ -42,50 +44,13 @@ function showScreen(id) {
     }
 }
 
-function goHome() {
-    showScreen('welcome');
-}
-
-function goLogin() {
-    showScreen('login');
-}
-
-function goRegister() {
-    showScreen('register');
-}
-
-function goPrivate() {
-    if (!isLogged()) {
-        goHome();
-        return;
-    }
-    showScreen('private');
-}
-
-/* =====================
-   LOGOUT MODAL
-===================== */
-
-function confirmLogout() {
-    logoutModal.classList.add('active');
-}
-
-function closeLogout() {
-    logoutModal.classList.remove('active');
-}
-
-function logout() {
-    localStorage.removeItem('logged');
-    localStorage.removeItem('currentUser');
-
-    logoutModal.classList.remove('active');
-    goHome();
-}
+function goHome() { showScreen('welcome'); }
+function goLogin() { showScreen('login'); }
+function goRegister() { showScreen('register'); }
 
 /* =====================
    REGISTRO
 ===================== */
-
 function register() {
     const user = document.getElementById('reg-user').value.trim();
     const mail = document.getElementById('reg-mail').value.trim();
@@ -111,9 +76,7 @@ function register() {
     }
 
     const users = getUsers();
-    const exists = users.some(u => u.user === user || u.mail === mail);
-
-    if (exists) {
+    if (users.some(u => u.user === user || u.mail === mail)) {
         msg.textContent = "Usuario o email ya registrado.";
         return;
     }
@@ -130,7 +93,6 @@ function register() {
 /* =====================
    LOGIN
 ===================== */
-
 function login() {
     const identifier = document.getElementById('login-identifier').value.trim();
     const pass = document.getElementById('login-pass').value;
@@ -159,26 +121,106 @@ function login() {
 /* =====================
    SESIÓN PRIVADA
 ===================== */
-
 function loadPrivate() {
-    if (!isLogged()) {
-        goHome();
-        return;
-    }
-
-    greeting.textContent = `Hola, ${localStorage.getItem('currentUser')}`;
+    greeting.textContent = `Hola, ${currentUser()}`;
     showScreen('private');
+    loadTasks(); // ⬅️ ETAPA 3
+}
+
+/* =====================
+   LOGOUT
+===================== */
+function confirmLogout() {
+    logoutModal.classList.add('active');
+}
+
+function closeLogout() {
+    logoutModal.classList.remove('active');
+}
+
+function logout() {
+    localStorage.removeItem('logged');
+    localStorage.removeItem('currentUser');
+    logoutModal.classList.remove('active');
+    goHome();
+}
+
+/* =====================
+   ETAPA 3 – TO DO LIST
+===================== */
+
+function taskKey() {
+    return `tasks_${currentUser()}`;
+}
+
+function getTasks() {
+    return JSON.parse(localStorage.getItem(taskKey())) || [];
+}
+
+function saveTasks(tasks) {
+    localStorage.setItem(taskKey(), JSON.stringify(tasks));
+}
+
+function loadTasks() {
+    const list = document.getElementById('task-list');
+    if (!list) return;
+
+    list.innerHTML = "";
+    const tasks = getTasks();
+
+    tasks.forEach((task, index) => {
+        const li = document.createElement('li');
+        li.className = "task-item";
+        if (task.done) li.classList.add('done');
+
+        li.innerHTML = `
+            <span onclick="toggleTask(${index})">${task.text}</span>
+            <button onclick="deleteTask(${index})">✕</button>
+        `;
+
+        list.appendChild(li);
+    });
+}
+
+function addTask() {
+    const input = document.getElementById('task-input');
+    const text = input.value.trim();
+
+    if (text === "") return;
+
+    const tasks = getTasks();
+    tasks.push({ text, done: false });
+    saveTasks(tasks);
+
+    input.value = "";
+    loadTasks();
+}
+
+function deleteTask(index) {
+    const tasks = getTasks();
+    tasks.splice(index, 1);
+    saveTasks(tasks);
+    loadTasks();
+}
+
+function toggleTask(index) {
+    const tasks = getTasks();
+    tasks[index].done = !tasks[index].done;
+    saveTasks(tasks);
+    loadTasks();
 }
 
 /* =====================
    AUTOLOGIN
 ===================== */
+document.addEventListener('DOMContentLoaded', () => {
+    isLogged() ? loadPrivate() : goHome();
+});
 
-if (isLogged()) {
-    loadPrivate();
-} else {
-    goHome();
-}
+
+
+
+
 
 
 

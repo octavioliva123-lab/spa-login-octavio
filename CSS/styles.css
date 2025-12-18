@@ -190,6 +190,55 @@ input:focus {
 }
 
 /* =====================
+   TO-DO LIST
+===================== */
+.todo-input {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.todo-input input {
+    flex: 1;
+}
+
+#task-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#task-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+#task-list li span {
+    flex: 1;
+}
+
+#task-list li.done span {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+#task-list button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+#empty-msg {
+    text-align: center;
+    opacity: 0.7;
+    margin-top: 10px;
+}
+
+/* =====================
    LOGOUT MODAL
 ===================== */
 #logout-confirm {
@@ -235,7 +284,7 @@ input:focus {
     box-shadow: 0 8px 20px rgba(0,0,0,0.3);
 }
 
-/* BOTÓN NO — MISMA ANIMACIÓN */
+/* BOTÓN NO */
 .confirm-actions .nav-btn {
     border: 1.5px solid #fff;
     color: #fff;
@@ -283,6 +332,10 @@ input:focus {
         font-size: 24px;
     }
 
+    .todo-input {
+        flex-direction: column;
+    }
+
     .confirm-actions {
         flex-direction: column;
         width: 100%;
@@ -292,6 +345,7 @@ input:focus {
         width: 100%;
     }
 }
+
 
 
 
