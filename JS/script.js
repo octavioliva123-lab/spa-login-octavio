@@ -1,6 +1,7 @@
 const screens = document.querySelectorAll('.screen');
 const navPublic = document.getElementById('nav-public');
 const navPrivate = document.getElementById('nav-private');
+const navBack = document.getElementById('nav-back');
 const greeting = document.getElementById('user-greeting');
 const logoutModal = document.getElementById('logout-confirm');
 
@@ -28,10 +29,15 @@ function showScreen(id) {
     screens.forEach(s => s.classList.remove('active'));
     document.getElementById(id).classList.add('active');
 
-    // Ocultar botones del header según pantalla
+    navPublic.classList.add('hidden');
+    navPrivate.classList.add('hidden');
+    navBack.classList.add('hidden');
+
     if (id === 'login' || id === 'register') {
-        navPublic.classList.add('hidden');
-    } else if (!isLogged()) {
+        navBack.classList.remove('hidden');
+    } else if (isLogged()) {
+        navPrivate.classList.remove('hidden');
+    } else {
         navPublic.classList.remove('hidden');
     }
 }
@@ -73,9 +79,6 @@ function logout() {
     localStorage.removeItem('currentUser');
 
     logoutModal.classList.remove('active');
-    navPrivate.classList.add('hidden');
-    navPublic.classList.remove('hidden');
-
     goHome();
 }
 
@@ -163,8 +166,6 @@ function loadPrivate() {
         return;
     }
 
-    navPublic.classList.add('hidden');
-    navPrivate.classList.remove('hidden');
     greeting.textContent = `Hola, ${localStorage.getItem('currentUser')}`;
     showScreen('private');
 }
@@ -178,6 +179,12 @@ if (isLogged()) {
 } else {
     goHome();
 }
+
+
+
+
+
+
 
 
 

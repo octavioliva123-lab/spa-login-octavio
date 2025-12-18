@@ -4,17 +4,22 @@
     <meta charset="UTF-8">
     <title>Octavio Web App</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="./CSS/styles.css">
 </head>
 <body>
 
 <header>
-    <img src="logo.png" alt="Logo" class="logo">
+    <img src="/Imagenes/logo.png" alt="Logo" class="logo">
 
     <!-- Navegación pública -->
     <nav id="nav-public">
         <button class="nav-btn" onclick="goLogin()">Iniciar sesión</button>
         <button class="nav-btn" onclick="goRegister()">Registrarse</button>
+    </nav>
+
+    <!-- Navegación volver -->
+    <nav id="nav-back" class="hidden">
+        <button class="nav-btn" onclick="goHome()">Volver</button>
     </nav>
 
     <!-- Navegación privada -->
@@ -90,22 +95,28 @@
         </div>
     </section>
 
-    <!-- CONFIRMAR LOGOUT -->
-    <section id="logout-confirm" class="screen">
-        <div class="panel">
-            <h1 class="panel-title">¿Cerrar sesión?</h1>
-            <div class="confirm-actions">
-                <button class="primary-btn" onclick="logout()">Sí</button>
-                <button class="nav-btn" onclick="goPrivate()">No</button>
-            </div>
-        </div>
-    </section>
-
 </main>
 
-<script src="script.js"></script>
+<!-- MODAL LOGOUT -->
+<section id="logout-confirm">
+    <div class="panel">
+        <h1 class="panel-title">¿Cerrar sesión?</h1>
+        <div class="confirm-actions">
+            <button class="primary-btn" onclick="logout()">Sí</button>
+            <button class="nav-btn" onclick="closeLogout()">No</button>
+        </div>
+    </div>
+</section>
+
+<script src="/JS/script.js"></script>
 </body>
 </html>
+
+
+
+
+
+
 
 
 
